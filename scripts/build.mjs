@@ -25,7 +25,7 @@ const rows=result.decisions.map((v,i)=>{
    alertId:v.alertId,action:v.action,confidence:v.confidence,reason:v.reason,
    description:a.rule.description,source:a.data.srcip,destination:a.data.dstip,
    bytes:a.data.bytes,fileCount:a.data.files,repeatCount:a.data.count,level:a.rule.level,
-   normal:!a.rule.mitre.some(x=>x==='T1041'||x==='T1048')&&a.rule.level<=3
+   normal:a.rule.level<=3
  };
 });
 const now=Date.parse('2026-10-13T00:00:00.000Z');
