@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="color-scheme" content="light"/>
+  <meta name="theme-color" content="#f8f7ff"/>
+  <meta name="description" content="ALEPH XDR-06. Wazuh 형식의 공식 연습 경보를 탐지하고 자료 유출 공격 탐지와 임시 거부 규칙을 시뮬레이션합니다."/>
+  <title>ALEPH XDR-06 | Exfiltration Defense</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='16' fill='%235f53dd'/%3E%3Cpath d='M27 20 17 32l10 12m10-24 10 12-10 12M35 19 29 45' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
+  <link rel="stylesheet" href="/styles.css"/>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+<header class="site-header">
+ <div class="shell header-inner">
+  <a class="brand" href="/" aria-label="ALEPH XDR-06 홈"><span class="brand-icon">⌘</span><span>ALEPH <b>XDR<span class="slash">/</span>06</b></span></a>
+  <nav class="nav" aria-label="페이지 탐색"><a href="#how">탐지 흐름</a><a href="#lab">직접 분석</a><a href="#events">경보 목록</a></nav>
+  <a class="source-link" target="_blank" rel="noopener noreferrer" href="https://github.com/sdydy0298-dotcom/ALEPH-XDR-06-Exfiltration">GitHub <span aria-hidden="true">↗</span></a>
+ </div>
+</header>
+<main class="shell">
+ <section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+   <div class="eyebrow"><span class="live-dot"></span> THREAT DETECTION LAB <span class="eyebrow-bar">·</span> MITRE ATT&CK T1041 / T1048</div>
+   <h1 id="hero-title">처음 보는 외부 전송,<br/><em>목적지부터 확인합니다.</em></h1>
+   <p class="lede">낯선 외부 목적지로 자료가 대량 전송되는 상황을 찾아냅니다. <b>유출 근거가 뚜렷한 목적지만 15분간 임시 차단</b>하고, 정상 전송은 통과시킵니다.</p>
+   <div class="hero-actions"><a class="primary-button" href="#lab">탐지 과정 직접 확인 <span>↗</span></a><a class="ghost-button" href="#events">30건 경보 살펴보기 <span>↓</span></a></div>
+   <p class="scope">ⓘ 수업용 가상 Wazuh 경보를 사용하는 <strong>오프라인 시뮬레이션</strong>입니다. 실제 네트워크 차단과 연결되어 있지 않습니다.</p>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+   <div class="art-top"><span class="mini-light"></span><span>SECURITY SIGNAL</span><span class="chip">XDR-06</span></div>
+   <div class="art-body">
+    <div class="art-request">OUTBOUND TRANSFER <span class="highlight">[unusual destination]</span></div>
+    <div class="art-track"><div class="track-flow"></div></div>
+    <div class="art-decision"><span class="decision-mark">!</span><div><small>UNUSUAL EXTERNAL TRANSFER</small><strong>위협 패턴 탐지</strong></div><span class="art-danger">BLOCK</span></div>
+    <div class="art-footer"><span><strong>30 TRAINING EVENTS</strong></span><span>STANDALONE ENGINE <b>●</b></span></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="metrics" aria-label="경보 분석 통계">
+  <article class="metric"><div class="metric-heading"><span class="metric-icon purple-icon">◫</span>전체 경보</div><strong id="m-total">–</strong><small>분석한 연습 경보</small></article>
+  <article class="metric"><div class="metric-heading"><span class="metric-icon red-icon">⊘</span>차단 판단</div><strong id="m-block" class="red-ink">–</strong><small>명확한 자료 반출</small></article>
+  <article class="metric"><div class="metric-heading"><span class="metric-icon amber-icon">◇</span>주의 알림</div><strong id="m-alert" class="amber-ink">–</strong><small>차단하지 않고 확인</small></article>
+  <article class="metric"><div class="metric-heading"><span class="metric-icon blue-icon">▤</span>일반 기록</div><strong id="m-record" class="blue-ink">–</strong><small>정상 자료 조회</small></article>
+  <article class="metric"><div class="metric-heading"><span class="metric-icon purple-icon">✓</span>정상 오차단</div><strong id="m-false">–</strong><small>목표: 0건</small></article>
+ </section>
+
+ <section class="section" id="how">
+  <div class="section-heading"><div><span class="eyebrow eyebrow-muted">HOW IT WORKS</span><h2>경보가 차단 규칙이 되기까지</h2><p>실제 판단 코드와 저장된 정책이 어떻게 이어지는지 한눈에 볼 수 있어요.</p></div></div>
+  <div class="steps">
+   <div class="step"><span class="step-index">01</span><div class="step-icon">▤</div><h3>Wazuh 경보</h3><p>목적지 IP·전송량·파일 건수·Wazuh 경보 수집</p></div>
+   <div class="step-arrow">→</div>
+   <div class="step"><span class="step-index">02</span><div class="step-icon">◎</div><h3>T1041 · T1048 엔진</h3><p>낯선 목적지·대량 전송·업무 시간 외 압축 반출</p></div>
+   <div class="step-arrow">→</div>
+   <div class="step"><span class="step-index">03</span><div class="step-icon">◈</div><h3>위협 판단</h3><p>BLOCK · ALERT · RECORD 확신도 계산</p></div>
+   <div class="step-arrow">→</div>
+   <div class="step"><span class="step-index">04</span><div class="step-icon">▣</div><h3>ZTNA 규칙 확인</h3><p>외부 목적지만 15분 임시 거부, 정상 목적지 통과</p></div>
+  </div>
+ </section>
+
+ <section class="section lab-section" id="lab">
+  <div class="section-heading"><div><span class="eyebrow eyebrow-muted">INTERACTIVE DETECTION</span><h2>직접 공격 경보를 분석해 보세요</h2><p>사례를 고르면 <code>decide(alert)</code>를 브라우저에서 다시 실행합니다. 백엔드 요청 없이 실제 구현 코드로 판정합니다.</p></div><span class="offline-pill">● LOCAL REPLAY</span></div>
+  <div class="lab-frame">
+   <div class="lab-left">
+    <h3>어떤 외부 전송인가요?</h3><p class="muted">공식 연습 경보에서 세 가지 상황을 골랐어요.</p>
+    <div class="scenario-list" role="group" aria-label="시험 상황 선택">
+     <button class="scenario active" type="button" data-case="ex-01"><span class="scenario-symbol symbol-rose">⊘</span><span class="scenario-text"><strong>낯선 목적지 대량 전송</strong><small>외부 주소로 200건의 자료 반출</small></span><span class="scenario-arrow">↗</span></button>
+     <button class="scenario" type="button" data-case="ex-11"><span class="scenario-symbol symbol-amber">◇</span><span class="scenario-text"><strong>애매한 파일 전송</strong><small>중간 크기 파일 하나만 낯선 주소로 전송</small></span><span class="scenario-arrow">↗</span></button>
+     <button class="scenario" type="button" data-case="ex-21"><span class="scenario-symbol symbol-indigo">▤</span><span class="scenario-text"><strong>정상적인 자료 조회</strong><small>내 메모 한 건을 읽은 일반 작업</small></span><span class="scenario-arrow">↗</span></button>
+    </div>
+    <div class="evidence-box"><span class="evidence-label">공식 Wazuh 경보</span><p id="d-description">불러오는 중...</p><div class="evidence-meta"><span>출발 IP <b id="d-ip">–</b></span><span>목적지 IP <b id="d-dest">–</b></span><span>경보 수준 <b id="d-level">–</b></span></div><div class="path-detail"><span>관측 전송량 / 파일 수</span><code id="d-volume">–</code></div></div>
+   </div>
+   <div class="lab-right">
+    <div class="lab-title"><span>실시간 로컬 재판정</span><span id="d-id" class="mono tiny">ex-01</span></div>
+    <div class="decision-spot"><span id="d-badge" class="decision-badge is-block">BLOCK</span><div id="d-explain" class="decision-explain">낯선 목적지 대량 전송 등 지속성 신호를 분석합니다.</div></div>
+    <div class="confidence-top"><span>패턴 일치 확신도</span><strong id="d-confidence">–</strong></div>
+    <div class="confidence-track"><div id="d-bar"></div></div>
+    <div class="pattern-display"><small>탐지된 패턴</small><strong id="d-pattern">–</strong></div>
+    <div class="policy-spot"><div><span>ZTNA 목적지 접근 판정 시뮬레이션</span><small>기존 규칙 + 목적지 IP별 15분 임시 거부</small></div><b id="d-access">–</b></div>
+    <button id="replay" class="replay-button" type="button">↻ 선택한 경보 다시 분석</button>
+    <div id="replay-status" class="replay-status" role="status" aria-live="polite"></div>
+   </div>
+  </div>
+  <div class="legend"><span><i class="dot block-dot"></i>BLOCK · 실제 대량 유출 목적지만 임시 거부</span><span><i class="dot alert-dot"></i>ALERT · 의심 전송만 알림 기록</span><span><i class="dot record-dot"></i>RECORD · 일반 기록만 생성</span></div>
+ </section>
+
+ <section class="section events-section" id="events">
+  <div class="section-heading event-header"><div><span class="eyebrow eyebrow-muted">SECURITY EVENT LOG</span><h2>전체 외부 전송 경보</h2><p>판정 유형별로 필터링하고, 이벤트를 선택하면 위 분석 화면에서 확인할 수 있어요.</p></div></div>
+  <div class="events-card">
+   <div class="table-toolbar">
+    <div class="filter-group" role="group" aria-label="판정 유형 필터"><button data-filter="all" class="filter-btn selected" type="button">전체</button><button data-filter="block" class="filter-btn" type="button">BLOCK</button><button data-filter="alert" class="filter-btn" type="button">ALERT</button><button data-filter="record" class="filter-btn" type="button">RECORD</button></div>
+    <input id="search" type="search" autocomplete="off" aria-label="경보 ID · 출발/목적지 IP 검색" placeholder="경보 ID · 출발/목적지 IP 검색"/>
+   </div>
+   <div class="table-wrap"><table><thead><tr><th>경보 ID</th><th>이벤트 요약</th><th>출발 IP</th><th>목적지 IP</th><th>전송량</th><th>수준</th><th>확신도</th><th>판정</th></tr></thead><tbody id="events-body"><tr><td colspan="8" class="empty-state">시험 데이터를 가져오는 중입니다.</td></tr></tbody></table></div>
+   <div class="table-foot"><span id="shown">–건 표시</span><span>교육용 가상 전송 경보 · 비밀번호/토큰 저장 없음</span></div>
+  </div>
+ </section>
+ <section class="section reference">
+  <div class="reference-inner"><div><span class="eyebrow eyebrow-muted">ABOUT THIS LAB</span><h2>이 프로젝트의 범위</h2><p>이 사이트는 공식 연습 경보를 분석한 <b>오프라인 목적지 거부 시뮬레이션</b>입니다. 실제 네트워크 장비를 차단하거나 파일 전송을 막지는 않습니다.</p></div><a href="https://github.com/sdydy0298-dotcom/ALEPH-XDR-06-Exfiltration" target="_blank" rel="noopener noreferrer" class="ghost-button">판단 코드·테스트 보기 ↗</a></div>
+ </section>
+</main>
+<footer class="site-footer"><div class="shell footer-content"><span><b>ALEPH XDR / 06</b> <span class="sep">·</span> DATA EXFILTRATION DEFENSE</span><span>DATA EXFILTRATION · MITRE T1041 / T1048 · Educational Simulation</span></div></footer>
+</body></html>
