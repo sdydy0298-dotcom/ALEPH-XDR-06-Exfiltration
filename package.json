@@ -1,0 +1,15 @@
+{
+  "name": "aleph-xdr-06-exfiltration",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "xdr:run": "node xdr/run.mjs",
+    "xdr:judge": "node scripts/xdr-run.mjs",
+    "test": "node --test",
+    "build": "node scripts/build.mjs"
+  }
+}

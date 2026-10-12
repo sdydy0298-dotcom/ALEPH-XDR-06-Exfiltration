@@ -1,0 +1,14 @@
+# Do not publish secrets or private runtime configuration
+.env
+.env.*
+!.env.example
+.vercel/
+node_modules/
+*.pem
+*.key
+*.p12
+*.pfx
+bundle-notes.json
+artifacts/
+.DS_Store
+*.log.private

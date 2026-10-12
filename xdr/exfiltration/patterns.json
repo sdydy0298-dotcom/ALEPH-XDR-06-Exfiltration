@@ -1,0 +1,32 @@
+[
+  {
+    "name": "T1048-Unknown-Destination-Large-Transfer",
+    "condition": "평소 목적지가 아닌 외부 주소로 큰 데이터(50MB 이상 또는 충분한 대량 파일)를 실제 전송했고 T1048/T1041 및 높은 보안 수준이 뒷받침되는 경우",
+    "evidence": "MITRE ATT&CK T1048·T1041: 승인되지 않은 외부 목적지로 전송되는 대용량 자료는 데이터 유출의 대표 신호."
+  },
+  {
+    "name": "T1041-Repeated-Large-C2-Transfer",
+    "condition": "명령 통로 등으로 동일 목적지에 대용량 전송을 여러 번 수행하거나 5회 이상 반복하는 경우",
+    "evidence": "MITRE ATT&CK T1041: 명령·제어 채널을 통해 데이터를 반복 전송하는 방식은 자료 유출 기술."
+  },
+  {
+    "name": "T1048-Off-Hours-Archive-Transfer",
+    "condition": "업무·수업 시간 밖에 외부 목적지로 압축 파일이나 묶음 자료를 대량 반출하는 경우",
+    "evidence": "MITRE ATT&CK T1048: 승인되지 않은 시간대에 파일 묶음을 전송하는 행위는 비정상 프로토콜을 통한 유출과 관련."
+  },
+  {
+    "name": "T1048-Unusual-Port-Bulk-Export",
+    "condition": "평소 쓰지 않는 포트로 수십 건의 자료를 연속으로 외부 전송하거나 자료실 전체를 짧은 시간에 복사하는 경우",
+    "evidence": "MITRE ATT&CK T1048: 평소와 다른 프로토콜·포트와 대량 파일 반출을 함께 관측하면 유출 확신도가 높아짐."
+  },
+  {
+    "name": "T1041-T1048-Ambiguous-Transfer",
+    "condition": "단발성 작은 파일, 신뢰 목적지의 일시적인 증가, 압축만 하고 실제 전송은 없는 경우 및 실패한 시도는 차단하지 않고 알림만",
+    "evidence": "MITRE ATT&CK T1041·T1048: 유출이 확인되지 않은 점검·소량·실패 이벤트는 추가 조사 대상이지 확정 차단 대상이 아님."
+  },
+  {
+    "name": "T1041-T1048-Routine-Transfer",
+    "condition": "일반 문서 열람·정상 동기화·로그아웃 등 데이터 외부 반출 신호가 없는 정상 활동",
+    "evidence": "MITRE ATT&CK T1041·T1048: 승인된 작은 전송이나 일반 열람은 자료 유출 공격의 증거가 아님."
+  }
+]

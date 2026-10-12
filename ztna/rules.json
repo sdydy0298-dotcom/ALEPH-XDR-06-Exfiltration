@@ -1,0 +1,11 @@
+{
+  "description": "XDR-06 교육용 ZTNA 기본 정책. 기존 규칙을 유지하며 목적지 임시 거부 규칙을 추가로 검사함",
+  "allow": [
+    {
+      "id": "baseline-allow",
+      "action": "allow",
+      "description": "차단 규칙 없는 목적지의 일반 외부 전송 허용"
+    }
+  ],
+  "deny": []
+}
