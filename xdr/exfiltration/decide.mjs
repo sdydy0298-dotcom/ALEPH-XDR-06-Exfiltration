@@ -73,7 +73,7 @@ export function decide(alert){
     if(s.offhours&&s.archive)return make(.98,PATTERNS.offhours);
     if(s.command&&s.repeated)return make(.97,PATTERNS.repeated);
     if(s.repeated&&(s.attempts>=5 || s.offhours))return make(.97,PATTERNS.repeated);
-    if(s.unknown)return make(s.archive?.98:.96,s.archive?PATTERNS.offhours:PATTERNS.unknown);
+    if(s.unknown)return make(.96,PATTERNS.unknown);
     if(s.entire||s.unusualPort||s.offhours)return make(.94,PATTERNS.unusual);
   }
   if(s.tagged && s.level>=5)return make(.62,PATTERNS.ambiguous);
