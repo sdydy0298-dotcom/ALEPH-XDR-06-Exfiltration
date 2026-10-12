@@ -1,0 +1,26 @@
+name: Verify XDR-06 Exfiltration Defense
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Replay official Wazuh exfiltration alerts
+        run: npm run xdr:run -- exfiltration
+      - name: Test standalone judge and destination ZTNA safety
+        run: npm test
+      - name: Replay again and verify deterministic output
+        run: npm run xdr:run -- exfiltration
+      - name: Build Vercel public dashboard
+        run: npm run build
+      - name: Ensure all replay products exactly match committed files
+        run: |
+          git diff --exit-code -- xdr/exfiltration/result.json xdr/alerts.log xdr/temporary-deny.json public/report.json public/samples.json public/decide.mjs public/index.html public/app.js public/styles.css
