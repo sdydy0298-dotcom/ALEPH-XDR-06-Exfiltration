@@ -1,0 +1,191 @@
+{
+  "schema": "aleph.xdr.result.v1",
+  "moduleKey": "exfiltration",
+  "decisions": [
+    {
+      "alertId": "ex-01",
+      "action": "block",
+      "confidence": 0.96,
+      "reason": "T1048-Unknown-Destination-Large-Transfer"
+    },
+    {
+      "alertId": "ex-02",
+      "action": "block",
+      "confidence": 0.98,
+      "reason": "T1048-Off-Hours-Archive-Transfer"
+    },
+    {
+      "alertId": "ex-03",
+      "action": "block",
+      "confidence": 0.97,
+      "reason": "T1041-Repeated-Large-C2-Transfer"
+    },
+    {
+      "alertId": "ex-04",
+      "action": "block",
+      "confidence": 0.98,
+      "reason": "T1048-Unusual-Port-Bulk-Export"
+    },
+    {
+      "alertId": "ex-05",
+      "action": "block",
+      "confidence": 0.96,
+      "reason": "T1048-Unknown-Destination-Large-Transfer"
+    },
+    {
+      "alertId": "ex-06",
+      "action": "block",
+      "confidence": 0.97,
+      "reason": "T1041-Repeated-Large-C2-Transfer"
+    },
+    {
+      "alertId": "ex-07",
+      "action": "block",
+      "confidence": 0.96,
+      "reason": "T1048-Unknown-Destination-Large-Transfer"
+    },
+    {
+      "alertId": "ex-08",
+      "action": "block",
+      "confidence": 0.99,
+      "reason": "T1048-Unusual-Port-Bulk-Export"
+    },
+    {
+      "alertId": "ex-09",
+      "action": "block",
+      "confidence": 0.97,
+      "reason": "T1041-Repeated-Large-C2-Transfer"
+    },
+    {
+      "alertId": "ex-10",
+      "action": "block",
+      "confidence": 0.96,
+      "reason": "T1048-Unknown-Destination-Large-Transfer"
+    },
+    {
+      "alertId": "ex-11",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-12",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-13",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-14",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-15",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-16",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-17",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-18",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-19",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-20",
+      "action": "alert",
+      "confidence": 0.62,
+      "reason": "T1041-T1048-Ambiguous-Transfer"
+    },
+    {
+      "alertId": "ex-21",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-22",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-23",
+      "action": "record",
+      "confidence": 0.07,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-24",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-25",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-26",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-27",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-28",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-29",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    },
+    {
+      "alertId": "ex-30",
+      "action": "record",
+      "confidence": 0.06,
+      "reason": "T1041-T1048-Routine-Transfer"
+    }
+  ],
+  "counts": {
+    "block": 10,
+    "alert": 10,
+    "record": 10
+  }
+}

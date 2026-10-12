@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "id": "xdr06-ex-01",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "203.0.113.50",
+    "alertId": "ex-01",
+    "reason": "T1048-Unknown-Destination-Large-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-02",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "198.51.100.40",
+    "alertId": "ex-02",
+    "reason": "T1048-Off-Hours-Archive-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-03",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "203.0.113.50",
+    "alertId": "ex-03",
+    "reason": "T1041-Repeated-Large-C2-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-04",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "198.51.100.40",
+    "alertId": "ex-04",
+    "reason": "T1048-Unusual-Port-Bulk-Export",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-05",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "203.0.113.55",
+    "alertId": "ex-05",
+    "reason": "T1048-Unknown-Destination-Large-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-06",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "192.0.2.90",
+    "alertId": "ex-06",
+    "reason": "T1041-Repeated-Large-C2-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-07",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "198.51.100.45",
+    "alertId": "ex-07",
+    "reason": "T1048-Unknown-Destination-Large-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-08",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "203.0.113.60",
+    "alertId": "ex-08",
+    "reason": "T1048-Unusual-Port-Bulk-Export",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-09",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "203.0.113.61",
+    "alertId": "ex-09",
+    "reason": "T1041-Repeated-Large-C2-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  },
+  {
+    "id": "xdr06-ex-10",
+    "action": "deny",
+    "scope": "destination",
+    "destination": "198.51.100.46",
+    "alertId": "ex-10",
+    "reason": "T1048-Unknown-Destination-Large-Transfer",
+    "createdAt": "2026-10-13T00:00:00.000Z",
+    "expiresAt": "2026-10-13T00:15:00.000Z"
+  }
+]
